@@ -1,5 +1,6 @@
 const util = require('util'),
 	fs = require('fs'),
+	path = require('path'),
 	Client = require('./base/Hubbie'),
 	readdir = util.promisify(fs.readdir),
 	client = new Client({ ws: { properties: { $browser: 'Discord iOS' } } }),

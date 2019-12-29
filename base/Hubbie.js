@@ -1,4 +1,6 @@
-let { Client, Collection } = require('discord.js');
+let { Client, Collection } = require('discord.js'),
+	util = require('util'),
+	path = require('path');
 
 module.exports = class client extends Client {
 	constructor(options) {

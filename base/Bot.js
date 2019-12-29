@@ -1,14 +1,15 @@
-const mongoose = require('mongoose');
+const { Schema, model } = require('mongoose');
 
-module.exports = mongoose.model(
+module.exports = model(
 	'Bot',
-	new mongoose.Schema({
+	new Schema({
 		id: { type: String },
-		nQueue: 0,
+		nQueue: { type: Number },
+		invited: false,
 		info: {
-			ownerId: { type: String },
+			ownerID: { type: String },
 			prefix: { type: String },
-			description: 'Un simple bot.',
+			description: { type: String, default: 'Un simple bot.' },
 			verified: false,
 			votes: {
 				up: 0,

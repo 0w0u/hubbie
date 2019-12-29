@@ -1,17 +1,20 @@
-const mongoose = require('mongoose'),
-	Schema = mongoose.Schema,
+const { Schema, model } = require('mongoose'),
 	config = require('../m-config.js');
 
-module.exports = mongoose.model(
+module.exports = model(
 	'Guild',
 	new Schema({
 		id: { type: String },
 		membersData: { type: Object, default: {} },
 		members: [{ type: Schema.Types.ObjectId, ref: 'Member' }],
 		prefix: { type: String, default: config.prefix },
+		botQueue: { type: Number, default: 0 },
 		logs: {
-			enabled: true,
-			channel: undefined
+			type: Object,
+			default: {
+				enabled: true,
+				channel: undefined
+			}
 		}
 	})
 );

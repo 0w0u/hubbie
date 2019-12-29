@@ -50,7 +50,4 @@ Información extra:
 
 **Activos:**
 
-- [Devsaider](https://github.com/MrDevsaider 'MrDevsaider')
-- [Lau](https://github.com/Laauuu 'Lau')
-- [tati1206](https://github.com/tati1206 'tati1206')
-- [mon](https://github.com/wwmon 'mon')
+- [mon](https://github.com/wwmon)

@@ -2,16 +2,16 @@
 	"name": "script-hub-free",
 	"version": "1.0.2",
 	"description": "Discord Bot para la comunidad de programación Script Hub",
-	"main": "index.js",
+	"main": "m-root.js",
 	"scripts": {
-		"start": "node index.js"
+		"start": "node m-root.js"
 	},
 	"dependencies": {
 		"discord.js": "^11.5.1",
 		"dotenv": "^8.2.0",
 		"express": "^4.16.4",
 		"moment": "^2.24.0",
-		"mongoose": "^5.7.14"
+		"mongoose": "5.7.1"
 	},
 	"engines": {
 		"node": "8.x"

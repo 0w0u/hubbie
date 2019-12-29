@@ -1,8 +1,8 @@
-const mongoose = require('mongoose');
+const { Schema, model } = require('mongoose');
 
-module.exports = mongoose.model(
+module.exports = model(
 	'Member',
-	new mongoose.Schema({
+	new Schema({
 		id: { type: String },
 		guildID: { type: String }
 		// Proximamente soporte para warns y moderación

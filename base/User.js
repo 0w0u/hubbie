@@ -1,8 +1,8 @@
-const mongoose = require('mongoose');
+const { Schema, model } = require('mongoose');
 
-module.exports = mongoose.model(
+module.exports = model(
 	'User',
-	new mongoose.Schema({
+	new Schema({
 		id: { type: String },
 		tickets: {
 			type: Array,

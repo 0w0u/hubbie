@@ -1,10 +1,12 @@
-const Command = require('../../base/Command.js');
-
+const Command = require('../../base/Command.js'),
+	Discord = require('discord.js'),
+	{ exec } = require('child_process'),
+	util = require('util');
 module.exports = class EvalCommand extends Command {
 	constructor(client) {
 		super(client, {
 			name: 'eval',
-			description: 'Evalúa código',
+			description: 'Evalúa código.',
 			usage: prefix => `\`${prefix}eval <código>\``,
 			examples: prefix => `\`${prefix}eval message.guild\``,
 			enabled: true,
