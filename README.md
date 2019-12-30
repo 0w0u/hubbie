@@ -13,20 +13,19 @@ Instala los paquetes de dependencias necesarios:
 Plantilla `.env`:
 
 ```env
-TOKEN="TOKEN"
-MONGOURI="MONGO URL"
-PREFIX="Prefix"
-
-
-inviteChannelId="Canal ID"
-globalChannelId="Canal ID"
-projectsChannelId="Canal ID"
-partnersChannelId="Canal ID"
-playgroundChannelId="Canal ID"
-privateLogsChannelId="Canal ID"
-botRequestsChannelId="Canal ID"
-suggestionsChannelId="Canal ID"
-caseLogsChannelId="Canal ID"
+# Tokens
+token=''
+mongodb=''
+prefix=''
+# ID's
+	# Owners
+	lau=''
+	dev=''
+	mon=''
+	# Canales
+	# Roles
+	test=''
+	club=''
 ```
 
 ## Ejecución

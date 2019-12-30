@@ -12,6 +12,12 @@ module.exports = class client extends Client {
 		this.guildsData = require('./Guild');
 		this.membersData = require('./Member');
 		this.botsData = require('./Bot');
+		this.colors = {
+			red: 0xf04947,
+			yel: 0xf1c40f,
+			gre: 0x43b581,
+			hub: 'ORANGE'
+		};
 	}
 	loadCommands(commandPath, commandName) {
 		try {

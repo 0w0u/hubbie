@@ -1,6 +1,6 @@
-const Command = require('../../base/Command.js');
-
-module.exports = class InviteCommand extends Command {
+const Command = require('../../base/Command.js'),
+	{ RichEmbed } = require('discord.js');
+module.exports = class Bots extends Command {
 	constructor(client) {
 		super(client, {
 			name: 'invitar',
@@ -9,7 +9,7 @@ module.exports = class InviteCommand extends Command {
 			examples: prefix => `\`${prefix}invitar 123456789987654321 !\``,
 			enabled: true,
 			ownerOnly: false,
-			guildOnly: false,
+			guildOnly: true,
 			aliases: ['invite'],
 			memberPermissions: [],
 			dirname: __dirname
@@ -18,40 +18,63 @@ module.exports = class InviteCommand extends Command {
 
 	async run(message, args, data) {
 		try {
-			if (!args[0]) {
-				return message.channel.send(
-					':x: | Necesitas especificar la ID de un bot.'
-				);
+			if (!message.member.roles.has(this.client.config.roles.veri)) {
+				return message.channel.send(':x: | No eres un usuario verificado.');
 			} else {
-				if (!args[1]) {
-					return message.channel.send(
-						':x: | Necesitas especificar el prefijo.'
-					);
+				if (!args[0]) {
+					return message.channel.send(':x: | Necesitas especificar la ID de un bot.');
 				} else {
-					let user;
-					try {
-						user = await this.client.fetchUser(args[0]);
-					} catch {
-						return message.channel.send(
-							':x: | Esa no es una ID válida, la ID debe ser el identificador de la aplicación del bot.'
-						);
+					if (!args[1]) {
+						return message.channel.send(':x: | Necesitas especificar el prefijo.');
+					} else {
+						let user;
+						try {
+							user = await this.client.fetchUser(args[0]);
+						} catch {
+							return message.channel.send(':x: | Esa no es una ID válida, la ID debe ser el identificador de la aplicación del bot.');
+						}
+						if (!user.bot) {
+							return message.channel.send(':x: | La ID introducida no pertenece a un bot.');
+						}
+						let bot = await this.client.findOrCreateBot({ id: args[0] });
+						if (bot.invited) {
+							return message.channel.send(':x: | Este bot ya ha sido invitado.');
+						}
+						let embedDev = new RichEmbed()
+							.setColor(this.client.colors.hub)
+							.setTitle('¡Petición registrada!')
+							.addField('Notificación', 'Le notificamos que su bot **`' + user.tag + '`** está pendiente de ser aprobado o ser rechazado a la brevedad. Su puesto en la cola de espera es **`' + (data.guild.botQueue += 1) + '`**.');
+						let embedQueue = new RichEmbed()
+							.setColor(this.client.colors.yel)
+							.setTitle('¡Petición recibida!')
+							.setDescription(message.author.tag + ' ha solicitado que su bot ' + user.tag + ' sea invitado al servidor.')
+							.addField('Invitación', `[Clic aquí para invitar](https://discordapp.com/api/oauth2/authorize?client_id=${user.id}&permissions=0&scope=bot&guild_id=${message.guild.id})`)
+							.addField('Bot', user.tag, true)
+							.addField('Desarrollador', message.author.tag, true);
+						let embedChannel = new RichEmbed()
+							.setColor(this.client.colors.hub)
+							.setTitle('¡Petición registrada!')
+							.addField('¡Hola ' + message.author.username + '!', 'Gracias por invitar tu bot a **Script Hub**, este será probado por algún miembro del Personal y se te notificará sobre la decisión que este tome.')
+							.addField('Bot', user.tag, true)
+							.addField('Desarrollador', message.author.tag, true);
+						message.author.send({ embed: embedDev });
+						this.client.channels.get(this.client.config.canales.reqs).send({ embed: embedQueue });
+						let msg = await message.channel.send({ embed: embedChannel });
+						bot.id = args[0];
+						bot.invited = true;
+						data.guild.botQueue;
+						bot.nQueue = data.guild.botQueue;
+						bot.info = {
+							ownerID: message.author.id,
+							prefix: args[1]
+						};
+						bot.invite = {
+							state: 0,
+							messageID: msg.id
+						};
+						await bot.save();
+						await data.guild.save();
 					}
-					if (!user.bot) {
-						return message.channel.send(
-							':x: | La ID introducida no pertenece a un bot.'
-						);
-					}
-					let bot = await this.client.findOrCreateBot({ id: args[0] });
-					if (bot.invited) {
-						return message.channel.send(':x: | Este bot ya ha sido invitado.');
-					}
-					bot.id = args[0];
-					bot.nQueue = data.guild.botQueue + 1;
-					bot.invited = true;
-					bot.info.ownerID = message.author.id;
-					bot.info.prefix = args[1];
-					await bot.save();
-					message.channel.send('Bot invitado')
 				}
 			}
 		} catch (e) {

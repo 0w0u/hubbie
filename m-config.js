@@ -4,5 +4,15 @@ module.exports = {
 	token: env.token,
 	mongodb: env.mongodb,
 	prefix: env.prefix,
-	owners: [env.lau, env.dev, env.mon]
+	owners: [env.mon],
+	canales: {
+		play: env.play,
+		reqs: env.reqs
+	},
+	roles: {
+		test: env.test,
+		club: env.club,
+		veri: env.veri,
+		comu: env.comu
+	}
 };

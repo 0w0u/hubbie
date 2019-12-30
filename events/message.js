@@ -28,26 +28,17 @@ module.exports = class MessageEvent {
 					.trim()
 					.split(/ +/g),
 				command = args.shift().toLowerCase(),
-				cmd =
-					client.commands.get(command) ||
-					client.commands.get(client.aliases.get(command));
+				cmd = client.commands.get(command) ||	client.commands.get(client.aliases.get(command));
 
 			if (!cmd) return;
 			if (!cmd.config.enabled) {
 				return message.channel.send(':x: | Este comando está deshabilitado.');
 			}
-			if (
-				cmd.config.ownerOnly &&
-				!client.config.owners.includes(message.author.id)
-			) {
-				return message.channel.send(
-					':x: | Este comando es solo para los desarrolladores.'
-				);
+			if (cmd.config.ownerOnly && !client.config.owners.includes(message.author.id)) {
+				return message.channel.send(':x: | Este comando es solo para los desarrolladores.');
 			}
 			if (cmd.config.guildOnly && !message.guild) {
-				return message.channel.send(
-					':x: | Este comando solo se puede usar en el servidor.'
-				);
+				return message.channel.send(':x: | Este comando solo se puede usar en el servidor.');
 			}
 			if (message.guild) {
 				let needp = [];
@@ -57,17 +48,12 @@ module.exports = class MessageEvent {
 					}
 				});
 				if (needp.length > 0) {
-					return message.channel.send(
-						':x: | No puedes utilizar este comando.\nNecesitas los siguientes permisos:\n`' +
-							needp.map(p => `\`${p}\``).join('`, `')
-					);
+					return message.channel.send(':x: | No puedes utilizar este comando.\nNecesitas los siguientes permisos:\n`' + needp.map(p => `\`${p}\``).join('`, `'));
 				}
 			}
 			try {
 				cmd.run(message, args, data);
-				console.log(
-					message.author.tag + ' ha usado el comando `' + cmd.help.name + '`'
-				);
+				console.log(message.author.tag + ' ha usado el comando `' + cmd.help.name + '`');
 			} catch (e) {
 				console.error(e);
 			}

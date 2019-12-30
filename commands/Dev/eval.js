@@ -2,7 +2,7 @@ const Command = require('../../base/Command.js'),
 	Discord = require('discord.js'),
 	{ exec } = require('child_process'),
 	util = require('util');
-module.exports = class EvalCommand extends Command {
+module.exports = class Dev extends Command {
 	constructor(client) {
 		super(client, {
 			name: 'eval',
