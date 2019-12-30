@@ -52,6 +52,16 @@ module.exports = class Bots extends Command {
 												.addField('Razón', args.slice(1).join(' '));
 											this.client.users.get(bot.info.ownerID).send({ embed });
 										}
+										if (bot.invite.messageID) {
+											let msg = await this.client.channels.get(this.client.config.canales.invi).fetchMessage(bot.invite.messageID);
+											let acceptEmbed = new RichEmbed()
+												.setColor(this.client.colors.red)
+												.setTitle('¡Petición denegada!')
+												.addField('Tu bot ha sido denegado en el servidor', 'Si crees que esto es un error; comunícate con un moderador.')
+												.addField('Bot', `<@${bot.id}>`, true)
+												.addField('Desarrollador', `<@${bot.info.ownerID}>`, true);
+											await msg.edit({ embed: acceptEmbed });
+										}
 										bot.invited = false;
 										bot.accepted = false;
 										data.guild.botQueue -= 1;

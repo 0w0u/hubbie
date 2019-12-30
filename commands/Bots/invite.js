@@ -18,8 +18,8 @@ module.exports = class Bots extends Command {
 
 	async run(message, args, data) {
 		try {
-			if (!message.member.roles.has(this.client.config.roles.veri)) {
-				return message.channel.send(':x: | No eres un usuario verificado.');
+			if (!message.member.roles.has(this.client.config.roles.veri) || message.channel.id !== this.client.config.canales.invi) {
+				return message.channel.send(':x: | No eres un usuario verificado y no estás en el canal correcto para invitar.');
 			} else {
 				if (!args[0]) {
 					return message.channel.send(':x: | Necesitas especificar la ID de un bot.');

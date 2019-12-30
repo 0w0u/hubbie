@@ -14,18 +14,35 @@ Plantilla `.env`:
 
 ```env
 # Tokens
-token=''
-mongodb=''
-prefix=''
+	# Token
+	token=''
+	# MongoDB
+	mongodb=''
+	# Prefijo del bot
+	prefix='h!'
+
 # ID's
 	# Owners
-	lau=''
-	dev=''
-	mon=''
-	# Canales
-	# Roles
-	test=''
-	club=''
+		# Lauuu#7421
+		lau=''
+		# Devsaider#0010
+		dev=''
+		# mon#0010
+		mon=''
+		# Canales
+			# Playground
+			play=''
+			# Requests
+			reqs=''
+		# Roles
+			# ToTest
+			test=''
+			# Club de Bots
+			club=''
+			# Verificado(a)
+			veri=''
+			# Dep. Comunidad
+			comu=''
 ```
 
 ## Ejecución

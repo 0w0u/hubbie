@@ -7,7 +7,9 @@ module.exports = {
 	owners: [env.mon],
 	canales: {
 		play: env.play,
-		reqs: env.reqs
+		reqs: env.reqs,
+		sugg: env.sugg,
+		invi: env.invi
 	},
 	roles: {
 		test: env.test,

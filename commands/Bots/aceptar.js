@@ -58,6 +58,16 @@ module.exports = class Bots extends Command {
 											.addField('Información', 'Puedes usar el comando `s!infobot` para ver la información guardada de tu bot.');
 										this.client.users.get(bot.info.ownerID).send({ embed: embeda });
 									}
+									if (bot.invite.messageID) {
+										let msg = await this.client.channels.get(this.client.config.canales.invi).fetchMessage(bot.invite.messageID);
+										let acceptEmbed = new RichEmbed()
+											.setColor(this.client.colors.gre)
+											.setTitle('¡Petición aceptada!')
+											.addField('Tu bot ha sido aceptado en el servidor', 'Puedes ir a probarlo en <#' + this.client.config.canales.play + '>')
+											.addField('Bot', `<@${bot.id}>`, true)
+											.addField('Desarrollador', `<@${bot.info.ownerID}>`, true);
+										await msg.edit({ embed: acceptEmbed });
+									}
 									member.removeRole(this.client.config.roles.test);
 									member.addRole(this.client.config.roles.club);
 									bot.invited = false;
