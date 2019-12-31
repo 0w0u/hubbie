@@ -18,12 +18,14 @@ module.exports = class Tickets extends Command {
   async run(message, args, data) {
     try {
       if (!args[0]) {
-        return message.channel.send(
-          ':x: | Necesitas especificar un usuario.'
-        );
+        return message.channel.send(':x: | Necesitas especificar un usuario.');
       } else {
         let user,
-          usuario = message.mentions.users.first();
+          usuario =
+            message.mentions.members.first().user ||
+            message.guild.members.find(x =>
+              `${x.displayName}`.toLowerCase().includes(args[0].toLowerCase())
+            ).user;
         if (usuario) {
           user = await this.client.findOrCreateUser({
             id: usuario.id
