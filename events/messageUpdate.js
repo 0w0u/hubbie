@@ -1,10 +1,12 @@
-module.exports = class Event {
+let { RichEmbed } = require('discord.js');
+module.exports = class MessageUpdateEvent {
   constructor(client) {
     this.client = client;
   }
   async run(oldMessage, newMessage) {
     if (oldMessage == newMessage) return;
     if (oldMessage.content === newMessage.content) return;
+    this.client.emit('message', newMessage);
     const embed = new RichEmbed()
       .setColor(0xf1c40f)
       .setTitle(

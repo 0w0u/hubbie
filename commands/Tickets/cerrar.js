@@ -1,13 +1,12 @@
 const Command = require('../../base/Command.js');
 
-module.exports = class ECommand extends Command {
+module.exports = class Tickets extends Command {
   constructor(client) {
     super(client, {
       name: 'cerrar',
       description: 'Cierra un ticket.',
-      usage: prefix => `\`${prefix}cerrar <usuario> [<razón>]\``,
-      examples: prefix =>
-        `\`${prefix}cerrar Sandessat Ticket creado sin razón.\`, \`${prefix}cerrar #ticket-1234512512 El usuario no responde.\``,
+      usage: prefix => `\`${prefix}cerrar <usuario>\``,
+      examples: prefix => `\`${prefix}cerrar Sandessat\``,
       enabled: true,
       ownerOnly: false,
       guildOnly: false,
@@ -20,7 +19,7 @@ module.exports = class ECommand extends Command {
     try {
       if (!args[0]) {
         return message.channel.send(
-          ':x: | Necesitas especificar un usuario o canal.'
+          ':x: | Necesitas especificar un usuario.'
         );
       } else {
         let user,
@@ -30,7 +29,7 @@ module.exports = class ECommand extends Command {
             id: usuario.id
           });
           if (user.tickets.reason) {
-            let toB = await this.client.users.get(user.tickets.channel);
+            let toB = await this.client.channels.get(user.tickets.channel);
             toB.delete();
             user.tickets = {
               reason: '...',

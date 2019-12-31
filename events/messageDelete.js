@@ -1,4 +1,5 @@
-module.exports = class Event {
+let { RichEmbed } = require('discord.js');
+module.exports = class MessageDeleteEvent {
   constructor(client) {
     this.client = client;
   }

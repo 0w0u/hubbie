@@ -20,15 +20,19 @@ module.exports = class Tickets extends Command {
     try {
       let server = this.client.guilds.get(this.client.config.servidor.id),
         user = data.user,
-        channel = message.guild.channels.find(
+        channel = server.channels.find(
           x => x.name === `ticket-${message.author.id}`
+        ),
+        channels = server.channels.array().filter(
+          x => x.name.includes(`ticket-`)
         );
+        if (channels.size >= 10) return message.channel.send(':x: | Hay muchos tickets creados actualmente, ¡intenta más tarde!')
       if (channel) {
         return message.channel.send(
           ':x: | Ya tienes un ticket creado. <#' + channel.id + '>'
         );
       } else {
-        let reasson = args[0] ? args.join(' ') : '** **';
+        let reasson = args[0] ? args.join(' ') : '*Sin razón*';
         user.tickets = {
           reason: reasson,
           status: true
@@ -37,8 +41,8 @@ module.exports = class Tickets extends Command {
           type: 'text',
           parent: this.client.config.servidor.categorias.tickets.id
         });
-        message.message.channel.send(
-          ':x: | Se ha creado correctamento tu ticket. <#' + create.id + '>'
+        message.channel.send(
+          ':white_check_mark: | Se ha creado correctamento tu ticket. <#' + create.id + '>'
         );
         await create.send(
           'El usuario ' +
