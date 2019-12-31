@@ -18,7 +18,7 @@ module.exports = class Tickets extends Command {
   }
   async run(message, args, data) {
     try {
-      let server = this.client.guilds.get(this.client.config.servidor.servID),
+      let server = this.client.guilds.get(this.client.config.servidor.id),
         user = data.user,
         channel = message.guild.channels.find(
           x => x.name === `ticket-${message.author.id}`

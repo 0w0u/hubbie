@@ -7,7 +7,7 @@ module.exports = model(
     id: { type: String },
     membersData: { type: Object, default: {} },
     members: [{ type: Schema.Types.ObjectId, ref: 'Member' }],
-    prefix: { type: String, default: config.prefix },
+    prefix: { type: String, default: config.bot.prefix },
     botQueue: { type: Number, default: 0 },
     logs: {
       type: Object,

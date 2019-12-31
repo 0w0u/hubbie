@@ -33,15 +33,15 @@ module.exports = class Dev extends Command {
           evalued = util.inspect(evalued, { depth: 0 });
         if (evalued.length > 1950) {
           message.channel.send('> Error: El resultado es muy largo');
-        } else if (evalued.includes(config.token || config.mongodb)) {
+        } else if (evalued.includes(config.tokens.bot || config.tokens.mongodb)) {
           message.channel.send('> Error: El resultado contiene un token');
         } else {
           message.channel.send('> Hecho:\n```js\n' + evalued + '\n```');
         }
       } catch (err) {
         err = util.inspect(err, { depth: 0 });
-        if (err.includes(config.token || config.mongodb))
-          err = err.replace(config.token || config.mongodb, 'T0K3N');
+        if (err.includes(config.tokens.bot || config.tokens.mongodb))
+          err = err.replace(config.tokens.bot || config.tokens.mongodb, 'T0K3N');
         message.channel.send('> Error: \n```js\n' + err + '\n```');
       }
     } catch (e) {

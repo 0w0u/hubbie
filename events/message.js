@@ -21,7 +21,7 @@ module.exports = class MessageEvent {
 
       message.guild
         ? (prefix = data.guild.prefix)
-        : (prefix = client.config.prefix);
+        : (prefix = client.config.bot.prefix);
       if (!message.content.startsWith(prefix) || message.author.bot) return;
       let args = message.content
           .slice(prefix.length)

@@ -26,10 +26,10 @@ const util = require('util'),
       delete require.cache[require.resolve(`./events/${file}`)];
     });
 
-    client.login(client.config.token);
+    client.login(client.config.tokens.bot);
 
     mongoose
-      .connect(client.config.mongodb, {
+      .connect(client.config.tokens.mongodb, {
         useNewUrlParser: true,
         useUnifiedTopology: true
       })
