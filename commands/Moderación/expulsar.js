@@ -17,6 +17,8 @@ module.exports = class ECommand extends Command {
   }
   async run(message, args, data) {
     try {
+      if (!message.member.roles.has(server.roles.staff.departamento.comunidad)) return message.channel.send(':x: | No eres del Departamento Comunidad.');
+      else
       if (!args[0]) {
         return message.channel.send(':x: | Necesitas mencionar a alguien.');
       } else {

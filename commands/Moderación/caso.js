@@ -3,20 +3,22 @@ const Command = require('../../base/Command.js');
 module.exports = class ECommand extends Command {
   constructor(client) {
     super(client, {
-      name: '',
-      description: '',
-      usage: prefix => `\`${prefix}\``,
-      examples: prefix => `\`${prefix}\``,
+      name: 'caso',
+      description: 'Mira la información de un caso específico',
+      usage: prefix => `\`${prefix}caso <id miembro> <id caso>\``,
+      examples: prefix => `\`${prefix}caso 123123123123123 XWx7s\``,
       enabled: true,
       ownerOnly: false,
       guildOnly: false,
-      aliases: [],
+      aliases: ['case'],
       memberPermissions: [],
       dirname: __dirname
     });
   }
   async run(message, args, data) {
     try {
+      if (!message.member.roles.has(server.roles.staff.departamento.comunidad)) return message.channel.send(':x: | No eres del Departamento Comunidad.');
+      else
       if (!args[0]) {
         return message.channel.send(
           ':x: | Necesitas colocar la ID de un usuario.'
