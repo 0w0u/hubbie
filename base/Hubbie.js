@@ -12,6 +12,7 @@ module.exports = class client extends Client {
     this.guildsData = require('./Guild');
     this.membersData = require('./Member');
     this.botsData = require('./Bot');
+    this.functions = require('./utils/functions');
     this.colors = {
       red: 0xf04947,
       yel: 0xf1c40f,
