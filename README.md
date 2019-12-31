@@ -13,36 +13,74 @@ Instala los paquetes de dependencias necesarios:
 Plantilla `.env`:
 
 ```env
-# Tokens
-	# Token
-	token=''
-	# MongoDB
-	mongodb=''
-	# Prefijo del bot
-	prefix='h!'
+# Importante
+ # Tokens
+  # Bot
+   tokBot=''
+  # MongoDB
+   tokMongodb=''
+ # Bot
+  # Prefijo
+   botPrefix=''
 
 # ID's
-	# Owners
-		# Lauuu#7421
-		lau=''
-		# Devsaider#0010
-		dev=''
-		# mon#0010
-		mon=''
-		# Canales
-			# Playground
-			play=''
-			# Requests
-			reqs=''
-		# Roles
-			# ToTest
-			test=''
-			# Club de Bots
-			club=''
-			# Verificado(a)
-			veri=''
-			# Dep. Comunidad
-			comu=''
+ # Owners
+  # Lauuu#742
+   ownLau=''
+  # Devsaider#0010
+   ownDev=''
+  # mon#0010
+   ownMon=''
+ # Servidor
+  # Categorías
+   # Información
+    catInfo=''
+    # Canales
+     # Casos
+      chanCases=''
+   # Comunidad
+    catCom=''
+    # Canales
+     # Sugerencias
+      chanSuggs=''
+     # Proyectos
+      chanProjects=''
+   # Staff
+    catStaff=''
+    # Canales
+     # Requests
+      chanRequests=''
+     # Logs
+      chanLogs=''
+   # Tickets
+    catTickets=''
+   # Bots
+    catBots=''
+    # Canales
+     # Invitar
+      chanInvite=''
+     # Playground
+      chanPlay=''
+  # Roles
+   # Staff
+    # SH Team
+     roleSHT=''
+    # CEO
+     roleCEO=''
+    # Representantes
+     roleRep=''
+    # Dep. Comunidad
+     roleDepCom=''
+    # Dep. Técnico
+     roleDepTec=''
+   # Comunidad
+    # Verificado(a)
+     roleVeri=''
+   # Bots
+    # Club
+     roleClub=''
+    # Test
+     roleTest=''
 ```
 
 ## Ejecución

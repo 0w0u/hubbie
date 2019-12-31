@@ -1,20 +1,70 @@
 require('dotenv').config();
 let env = process.env;
 module.exports = {
-	token: env.token,
-	mongodb: env.mongodb,
-	prefix: env.prefix,
-	owners: [env.mon],
-	canales: {
-		play: env.play,
-		reqs: env.reqs,
-		sugg: env.sugg,
-		invi: env.invi
-	},
-	roles: {
-		test: env.test,
-		club: env.club,
-		veri: env.veri,
-		comu: env.comu
-	}
+  tokens: {
+    bot: env.tokBot,
+    mongodb: env.tokMongodb
+  },
+  bot: {
+    prefix: env.botPrefix
+  },
+  owners: {
+    lau: env.ownLau,
+    dev: env.ownDev,
+    mon: env.ownMon
+  },
+  servidor: {
+    id: env.servID,
+    categorias: {
+      info: {
+        id: env.catInfo,
+        canales: {
+          casos: env.chanCases
+        }
+      },
+      comunidad: {
+        id: env.catCom,
+        canales: {
+          sugerencias: env.chanSuggs,
+          proyectos: env.chanProjects
+        }
+      },
+      staff: {
+        id: env.catStaff,
+        canales: {
+          request: env.chanRequest,
+          logs: env.chanLogs
+        }
+      },
+      tickets: {
+        id: env.catTickets,
+        canales: {}
+      },
+      bots: {
+        id: env.catBots,
+        canales: {
+          invitar: env.chanInvite,
+          playground: env.chanPlay
+        }
+      }
+    },
+    roles: {
+      staff: {
+        sht: env.roleSHT,
+        ceo: env.roleCEO,
+        representantes: env.roleRep,
+        departamento: {
+          comunidad: env.roleDepCom,
+          tecnico: env.roleDepTec
+        }
+      },
+      comunidad: {
+        verificado: env.roleVeri
+      },
+      bots: {
+        club: env.roleClub,
+        test: env.roleTest
+      }
+    }
+  }
 };
