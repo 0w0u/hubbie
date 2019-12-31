@@ -22,10 +22,11 @@ module.exports = class Tickets extends Command {
       } else {
         let user,
           usuario =
-            message.mentions.members.first().user ||
-            message.guild.members.find(x =>
-              `${x.displayName}`.toLowerCase().includes(args[0].toLowerCase())
-            ).user;
+            message.mentions.users.first() ||
+            this.client.users.find(x =>
+              `${x.tag}`.toLowerCase().includes(args[0].toLowerCase())
+            ) ||
+            this.client.users.get(args[0]);
         if (usuario) {
           user = await this.client.findOrCreateUser({
             id: usuario.id

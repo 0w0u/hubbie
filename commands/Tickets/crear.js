@@ -23,10 +23,13 @@ module.exports = class Tickets extends Command {
         channel = server.channels.find(
           x => x.name === `ticket-${message.author.id}`
         ),
-        channels = server.channels.array().filter(
-          x => x.name.includes(`ticket-`)
+        channels = server.channels
+          .array()
+          .filter(x => x.name.includes(`ticket-`));
+      if (channels.size >= 10)
+        return message.channel.send(
+          ':x: | Hay muchos tickets creados actualmente, ¡intenta más tarde!'
         );
-        if (channels.size >= 10) return message.channel.send(':x: | Hay muchos tickets creados actualmente, ¡intenta más tarde!')
       if (channel) {
         return message.channel.send(
           ':x: | Ya tienes un ticket creado. <#' + channel.id + '>'
@@ -42,14 +45,28 @@ module.exports = class Tickets extends Command {
           parent: this.client.config.servidor.categorias.tickets.id
         });
         message.channel.send(
-          ':white_check_mark: | Se ha creado correctamento tu ticket. <#' + create.id + '>'
+          ':white_check_mark: | Se ha creado correctamento tu ticket. <#' +
+            create.id +
+            '>'
         );
         await create.send(
           'El usuario ' +
             message.author.toString() +
             ' ha abierto un ticket con la razón: `' +
             reasson +
-            '`'
+            '` ||<@&' +
+            this.client.config.servidor.roles.staff.departamento.comunidad +
+            '>||'
+        );
+        await create.overwritePermissions(
+          message.author,
+          {
+            VIEW_CHANNEL: true,
+            SEND_MESSAGES: null,
+            ATTACH_FILES: true,
+            EMBED_LINKS: true
+          },
+          'Ticket creado.'
         );
         user.tickets = {
           reason: reasson,
