@@ -19,12 +19,15 @@ module.exports = {
       info: {
         id: env.catInfo,
         canales: {
+          intro: env.chanIntro,
+          rules: env.chanRules,
           casos: env.chanCases
         }
       },
       comunidad: {
         id: env.catCom,
         canales: {
+          global: env.chanGlobal,
           sugerencias: env.chanSuggs,
           proyectos: env.chanProjects
         }
@@ -35,6 +38,9 @@ module.exports = {
           request: env.chanRequest,
           logs: env.chanLogs
         }
+      },
+      langs: {
+        id: env.catLangs
       },
       tickets: {
         id: env.catTickets,
@@ -59,9 +65,11 @@ module.exports = {
         }
       },
       comunidad: {
-        verificado: env.roleVeri
+        verificado: env.roleVeri,
+        usuario: env.roleUser
       },
       bots: {
+        gen: env.roleBotsGen,
         club: env.roleClub,
         test: env.roleTest
       }
