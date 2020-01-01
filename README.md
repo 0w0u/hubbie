@@ -12,7 +12,89 @@ Instala los paquetes de dependencias necesarios:
 
 Plantilla `.env`:
 
-La plantilla del `.env` es muy larga, si quieres hacer pull request y antes probar solo mete lo que necesites con los nombres de `m-config.js`
+```env
+# Importante
+ # Tokens
+  # Bot
+   tokBot=''
+  # MongoDB
+   tokMongodb=''
+ # Bot
+  # Prefijo
+   botPrefix=''
+
+# ID's
+ # Owners
+  # Lauuu#742
+   ownLau=''
+  # Devsaider#0010
+   ownDev=''
+  # mon#0010
+   ownMon=''
+ # Servidor
+  servID=''
+  # Categorías
+   # Información
+    catInfo=''
+    # Canales
+     # Introducción
+      chanIntro=''
+     # Reglas
+      chanRules=''
+     # Casos
+      chanCases=''
+   # Comunidad
+    catCom=''
+    # Canales
+     # Global
+      chanGlobal=''
+     # Sugerencias
+      chanSuggs=''
+     # Proyectos
+      chanProjects=''
+   # Staff
+    catStaff=''
+    # Canales
+     # Requests
+      chanRequest=''
+     # Logs
+      chanLogs=''
+   # Lenguajes
+    catLangs=''
+   # Tickets
+    catTickets=''
+   # Bots
+    catBots=''
+    # Canales
+     # Invitar
+      chanInvite=''
+     # Playground
+      chanPlay=''
+  # Roles
+   # Staff
+    # SH Team
+     roleSHT=''
+    # CEO
+     roleCEO=''
+    # Representantes
+     roleRep=''
+    # Dep. Comunidad
+     roleDepCom=''
+    # Dep. Técnico
+     roleDepTec=''
+   # Comunidad
+    # Verificado(a)
+     roleVeri=''
+    # Usuario
+     roleUser=''
+   # Bots
+    # General
+     roleBotsGen=''
+    # Club
+     roleClub=''
+    # Test
+     roleTest=''
+```
 
 ## Ejecución
 
