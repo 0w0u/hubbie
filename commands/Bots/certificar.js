@@ -42,6 +42,7 @@ module.exports = class Bots extends Command {
           } else {
             let embedDev = new (require('discord.js').RichEmbed)()
               .setColor(this.client.colors.hub)
+              .setThumbnail(member.user.displayAvatarURL)
               .setTitle('¡Bot certificado!')
               .setDescription(
                 'Tu bot ha sido certificado como "Confiable" dentro del Club de Bots.'
@@ -51,6 +52,7 @@ module.exports = class Bots extends Command {
               .send({ embed: embedDev });
             let embed = new (require('discord.js').RichEmbed)()
               .setColor(this.client.colors.hub)
+              .setThumbnail(bot.user.displayAvatarURL)
               .setTitle('¡Bot certificado!')
               .setDescription('El bot se ha certificado correctamente.');
             message.channel.send({ embed: embed });

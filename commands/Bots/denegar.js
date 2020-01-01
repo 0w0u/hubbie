@@ -84,6 +84,7 @@ module.exports = class Bots extends Command {
                         .fetchMessage(bot.invite.messageID);
                       let acceptEmbed = new RichEmbed()
                         .setColor(this.client.colors.red)
+                        .setThumbnail(member.user.displayAvatarURL)
                         .setTitle('¡Petición denegada!')
                         .addField(
                           'Tu bot ha sido denegado en el servidor',

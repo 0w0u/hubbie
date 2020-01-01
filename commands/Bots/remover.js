@@ -37,6 +37,7 @@ module.exports = class Bots extends Command {
           let embed = new (require('discord.js').RichEmbed)()
             .setColor(this.client.colors.red)
             .setTitle('¡Bot expulsado!')
+            .setThumbnail(member.user.displayAvatarURL)
             .setDescription(
               'El bot ' +
                 member.user.tag +

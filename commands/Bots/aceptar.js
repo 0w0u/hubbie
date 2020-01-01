@@ -97,6 +97,7 @@ module.exports = class Bots extends Command {
                     let acceptEmbed = new RichEmbed()
                       .setColor(this.client.colors.gre)
                       .setTitle('¡Petición aceptada!')
+                      .setThumbnail(member.user.displayAvatarURL)
                       .addField(
                         'Tu bot ha sido aceptado en el servidor',
                         'Puedes ir a probarlo en <#' +

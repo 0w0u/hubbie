@@ -58,6 +58,7 @@ module.exports = class Bots extends Command {
             }
             let embedDev = new RichEmbed()
               .setColor(this.client.colors.hub)
+              .setThumbnail(user.displayAvatarURL)
               .setTitle('¡Petición registrada!')
               .addField(
                 'Notificación',
@@ -69,6 +70,7 @@ module.exports = class Bots extends Command {
               );
             let embedQueue = new RichEmbed()
               .setColor(this.client.colors.yel)
+              .setThumbnail(user.displayAvatarURL)
               .setTitle('¡Petición recibida!')
               .setDescription(
                 message.author.tag +
@@ -85,6 +87,7 @@ module.exports = class Bots extends Command {
             let embedChannel = new RichEmbed()
               .setColor(this.client.colors.hub)
               .setTitle('¡Petición registrada!')
+              .setThumbnail(user.displayAvatarURL)
               .addField(
                 '¡Hola ' + message.author.username + '!',
                 'Gracias por invitar tu bot a **Script Hub**, este será probado por algún miembro del Personal y se te notificará sobre la decisión que este tome.'
@@ -96,6 +99,7 @@ module.exports = class Bots extends Command {
               .get(server.categorias.staff.canales.request)
               .send({ embed: embedQueue });
             let msg = await message.channel.send({ embed: embedChannel });
+            msg;
             bot.id = args[0];
             bot.invited = true;
             data.guild.botQueue;
