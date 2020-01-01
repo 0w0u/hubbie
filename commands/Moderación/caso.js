@@ -1,6 +1,6 @@
 const Command = require('../../base/Command.js');
 
-module.exports = class ECommand extends Command {
+module.exports = class Mods extends Command {
   constructor(client) {
     super(client, {
       name: 'caso',
@@ -17,31 +17,43 @@ module.exports = class ECommand extends Command {
   }
   async run(message, args, data) {
     try {
-      if (!message.member.roles.has(server.roles.staff.departamento.comunidad)) return message.channel.send(':x: | No eres del Departamento Comunidad.');
-      else
-      if (!args[0]) {
+      if (
+        !message.member.roles.has(
+          this.client.config.servidor.roles.staff.departamento.comunidad
+        )
+      )
         return message.channel.send(
-          ':x: | Necesitas colocar la ID de un usuario.'
+          ':x: | No eres del Departamento Comunidad.'
         );
-      } else {
-        if (!args[1]) {
+      else {
+        if (!args[0]) {
           return message.channel.send(
-            ':x: | Necesitas colocar la ID de un caso.'
+            ':x: | Necesitas colocar la ID de un usuario.'
           );
         } else {
-          let user;
-          try {
-            user = await this.client.fetchUser(args[0]);
-          } catch {
-            return message.channel.send(':x: | El usuario no existe.');
+          if (!args[1]) {
+            return message.channel.send(
+              ':x: | Necesitas colocar la ID de un caso.'
+            );
+          } else {
+            let user;
+            try {
+              user = await this.client.fetchUser(args[0]);
+            } catch {
+              return message.channel.send(':x: | El usuario no existe.');
+            }
+            let member = await this.client.findOrCreateMember({
+              id: user.id,
+              guildID: message.guild.id
+            });
+            let caso = member.moderation.cases.find(x => x.mID === args[1]);
+            let msg = `- Miembro: ${user.tag}\n- Tipo: ${
+              caso.mType
+            }\n- Razón: ${caso.mReason}\n+ Moderador/a: ${
+              this.client.users.get(caso.mMod).tag
+            }\n+ ID: ${caso.mID}`;
+            message.channel.send(msg, { code: 'diff' });
           }
-          let member = await this.client.findOrCreateMember({
-            id: user.id,
-            guildID: message.guild.id
-          });
-          let caso = member.moderation.cases.find(x => x.mID === args[1]);
-          let msg = `- Miembro: ${user.tag}\n- Tipo: ${caso.mType}\n- Razón: ${caso.mReason}\n+ Moderador: ${this.client.users.get(caso.mMod).tag}\n+ ID: ${caso.mID}`;
-          message.channel.send(msg, { code: 'diff' })
         }
       }
     } catch (e) {

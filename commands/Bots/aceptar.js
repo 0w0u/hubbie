@@ -106,7 +106,7 @@ module.exports = class Bots extends Command {
                       )
                       .addField('Bot', `<@${bot.id}>`, true)
                       .addField(
-                        'Desarrollador',
+                        'Desarrollador/a',
                         `<@${bot.info.ownerID}>`,
                         true
                       );
@@ -117,6 +117,7 @@ module.exports = class Bots extends Command {
                   bot.invited = false;
                   bot.accepted = true;
                   data.guild.botQueue -= 1;
+                  bot.invite.state = 1;
                   bot.nQueue = data.guild.botQueue;
                   await bot.save();
                   await data.guild.save();

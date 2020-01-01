@@ -12,11 +12,14 @@ module.exports = model(
       ownerID: { type: String },
       prefix: { type: String },
       description: { type: String, default: 'Un simple bot.' },
-      verified: false,
+      verified: { type: Boolean, default: false },
       votes: {
-        up: 0,
-        down: 0,
-        voters: []
+        up: { type: Number, default: 0 },
+        down: { type: Number, default: 0 },
+        voters: {
+          type: Array,
+          default: []
+        }
       }
     },
     invite: {

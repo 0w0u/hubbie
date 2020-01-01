@@ -92,8 +92,8 @@ module.exports = class Bots extends Command {
                 '¡Hola ' + message.author.username + '!',
                 'Gracias por invitar tu bot a **Script Hub**, este será probado por algún miembro del Personal y se te notificará sobre la decisión que este tome.'
               )
-              .addField('Bot', user.tag, true)
-              .addField('Desarrollador', message.author.tag, true);
+              .addField('Bot', user.toString(), true)
+              .addField('Desarrollador/a', message.author.toString(), true);
             message.author.send({ embed: embedDev });
             this.client.channels
               .get(server.categorias.staff.canales.request)

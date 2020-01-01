@@ -31,12 +31,12 @@ module.exports = class Bots extends Command {
               .includes(args[0].toLowerCase())
           ) ||
           message.guild.members.get(args[0]);
-        let bot = await client.findOrCreateBot({ id: member.user.id });
+        let bot = await this.client.findOrCreateBot({ id: member.user.id });
         if (!member || !member.user.bot) {
           return message.channel.send(':x: | Miembro no encontrado');
         } else {
           if (!args[1]) {
-            let state = bot.info.invite.state,
+            let state = bot.invite.state,
               State;
             if (state === 0) {
               State = 'Esperando aprobación...';

@@ -1,6 +1,6 @@
 const Command = require('../../base/Command.js');
 
-module.exports = class ECommand extends Command {
+module.exports = class Mods extends Command {
   constructor(client) {
     super(client, {
       name: 'expulsar',
@@ -45,13 +45,15 @@ module.exports = class ECommand extends Command {
             .send(sendChannel, { code: 'diff' });
           member.send(sendMember, { code: 'diff' });
           member.kick(reason);
+          let arr = [];
+          arr.push({
+            mType: 'kick',
+            mID: id,
+            mReason: reason,
+            mMod: message.author.id
+          });
           dataM.moderation = {
-            cases: dataM.moderation.cases.push({
-              mType: 'kick',
-              mID: id,
-              mReason: reason,
-              mMod: message.author.id
-            })
+            cases: arr
           };
           await dataM.save();
         }

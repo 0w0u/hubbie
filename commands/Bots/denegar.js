@@ -92,7 +92,7 @@ module.exports = class Bots extends Command {
                         )
                         .addField('Bot', `<@${bot.id}>`, true)
                         .addField(
-                          'Desarrollador',
+                          'Desarrollador/a',
                           `<@${bot.info.ownerID}>`,
                           true
                         );

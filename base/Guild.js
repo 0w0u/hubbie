@@ -15,6 +15,14 @@ module.exports = model(
         enabled: true,
         channel: undefined
       }
+    },
+    /**
+     * Estructura de una sugerencia.
+     * [{ sID: 'ID', sContent: 'Contenido de la sugerencia', sMessageID: 'ID del mensaje' }];
+     */
+    suggestions: {
+      type: Array,
+      default: []
     }
   })
 );
